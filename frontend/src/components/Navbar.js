@@ -46,7 +46,7 @@ const Navbar = () => {
 					<ul className="flex flex-col p-1 gap-5 bg-stone-100 rounded-lg border border-gray-200  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-stone-100 md:items-center">
 						<li>
 							<Link
-								href="#"
+								to="/login"
 								className="block py-2 pr-4 pl-3 text-zinc-600  rounded md:bg-transparent md:text-zinc-600 md:p-0 text-base"
 								aria-current="page"
 							>
