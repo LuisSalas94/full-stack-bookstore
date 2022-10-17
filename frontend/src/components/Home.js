@@ -4,7 +4,7 @@ import Card from "./Card";
 
 const Home = () => {
 	return (
-		<div className="max-width">
+		<div className="">
 			<Card />
 		</div>
 	);
