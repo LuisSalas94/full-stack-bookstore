@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+//import { fetchAsyncBook } from "../features/books/booksSlice";
+import { fetchAsyncBook } from "../features/book/bookSlice";
 
 const CardDetail = () => {
 	const { isbn } = useParams();
 	const dispatch = useDispatch();
+	const book = useSelector((state) => state.book.book);
 
-	console.log(isbn);
+	useEffect(() => {
+		dispatch(fetchAsyncBook(isbn));
+	}, [dispatch, isbn]);
+
 	return <div>CardDetail</div>;
 };
 
