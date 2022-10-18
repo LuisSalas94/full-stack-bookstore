@@ -14,7 +14,10 @@ const Card = () => {
 
 	return books.map((book) => {
 		return (
-			<section className="w-4/5 flex flex-col items-center text-center bg-zinc-50 rounded-lg border shadow-md md:flex-row md:max-w-md  hover:bg-gray-100">
+			<section
+				key={book.isbn}
+				className="w-4/5 flex flex-col items-center text-center bg-zinc-50 rounded-lg border shadow-md md:flex-row md:max-w-md  hover:bg-gray-100"
+			>
 				<img
 					src={book.image}
 					alt=""
