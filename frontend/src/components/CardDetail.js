@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 //import { fetchAsyncBook } from "../features/books/booksSlice";
-import { fetchAsyncBook } from "../features/book/bookSlice";
+import { fetchAsyncBook, clearBook } from "../features/book/bookSlice";
 import { Link } from "react-router-dom";
 //Components
 import Stars from "./Stars";
@@ -14,6 +14,9 @@ const CardDetail = () => {
 
 	useEffect(() => {
 		dispatch(fetchAsyncBook(isbn));
+		return () => {
+			dispatch(clearBook());
+		};
 	}, [dispatch, isbn]);
 
 	const randomViews = Math.floor(Math.random() * 15) + 1;

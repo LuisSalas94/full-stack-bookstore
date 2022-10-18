@@ -22,7 +22,12 @@ const initialState = {
 const bookSlice = createSlice({
 	name: "books",
 	initialState,
-	reducers: {},
+	reducers: {
+		//Reset Book
+		clearBook: (state) => {
+			state.book = [];
+		},
+	},
 	extraReducers: {
 		[fetchAsyncBook.fulfilled]: (state, { payload }) => {
 			return {
@@ -34,4 +39,5 @@ const bookSlice = createSlice({
 	},
 });
 
+export const { clearBook } = bookSlice.actions;
 export default bookSlice.reducer;
