@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import CardDetail from "./components/CardDetail";
+import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="/shoppingCart" element={<ShoppingCart />} />
 					<Route path="/:isbn" element={<CardDetail />} />
 					<Route path="/login" element={<Login />} />
 				</Routes>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 //import { fetchAsyncBook } from "../features/books/booksSlice";
 import { fetchAsyncBook, clearBook } from "../features/book/bookSlice";
@@ -9,7 +9,8 @@ import Stars from "./Stars";
 import Spinner from "./spinner/Spinner";
 
 const CardDetail = () => {
-	const [readMore, setReadMore] = useState(false);
+	//const [readMore, setReadMore] = useState(false);
+	const navigate = useNavigate();
 	const { isbn } = useParams();
 	const dispatch = useDispatch();
 	const book = useSelector((state) => state.book.book);
@@ -23,6 +24,10 @@ const CardDetail = () => {
 	}, [dispatch, isbn]);
 
 	const randomViews = Math.floor(Math.random() * 55) + 1;
+
+	const handleCart = () => {
+		navigate("/shoppingCart");
+	};
 
 	return (
 		<>
@@ -107,8 +112,11 @@ const CardDetail = () => {
 									<span className="title-font font-medium text-2xl text-gray-900">
 										${book.price}
 									</span>
-									<button className="flex ml-auto text-white bg-indigo-400 border-0 py-2 px-3 focus:outline-none rounded">
-										Buy Now
+									<button
+										onClick={() => handleCart()}
+										className="flex ml-auto text-white bg-indigo-400 border-0 py-2 px-3 focus:outline-none rounded"
+									>
+										Add to Cart
 									</button>
 
 									<Link
