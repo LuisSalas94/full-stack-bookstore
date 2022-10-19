@@ -13,6 +13,15 @@ export const fetchAsyncBooks = createAsyncThunk(
 	}
 );
 
+//Fetch Book by author or title Thunk Action
+export const fetchAsyncSearch = createAsyncThunk(
+	"books/fetchAsyncSearch",
+	async (search) => {
+		const response = await axios.get(`${baseURL}/v1/query?search=${search}`);
+		return response.data;
+	}
+);
+
 //Initial state
 const initialState = {
 	books: [],
@@ -25,6 +34,13 @@ const bookSlice = createSlice({
 	reducers: {},
 	extraReducers: {
 		[fetchAsyncBooks.fulfilled]: (state, { payload }) => {
+			return {
+				...state,
+				books: payload,
+				isLoading: false,
+			};
+		},
+		[fetchAsyncSearch.fulfilled]: (state, { payload }) => {
 			return {
 				...state,
 				books: payload,

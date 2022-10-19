@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import Bars from "./Bars";
+import { fetchAsyncSearch } from "../features/books/booksSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
+	const dispatch = useDispatch();
 	const [click, setClick] = useState(true);
+	const inputRef = useRef("");
 
 	const handleClick = () => {
 		setClick(!click);
 	};
 
+	const searchByInput = () => {
+		const search = inputRef.current.value;
+		dispatch(fetchAsyncSearch(search));
+	};
 	return (
 		<nav className="bg-stone-100 mb-5 border-gray-200 px-2 sm:px-4 py-3 rounded shadow-lg md:py-4">
 			<div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -44,6 +52,8 @@ const Navbar = () => {
 							type="text"
 							className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-400"
 							placeholder="Search by Title or Author"
+							ref={inputRef}
+							onChange={searchByInput}
 						/>
 					</div>
 				</div>
