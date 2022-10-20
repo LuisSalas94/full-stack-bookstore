@@ -28,8 +28,11 @@ const cartSlice = createSlice({
 			const itemIndex = state.cartItems.filter((item) => item.isbn !== payload);
 			state.cartItems = itemIndex;
 		},
+		clearCart(state, { payload }) {
+			state.cartItems = [];
+		},
 	},
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

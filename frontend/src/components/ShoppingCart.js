@@ -1,15 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../features/cart/cartSlice";
+import { removeFromCart, clearCart } from "../features/cart/cartSlice";
 
 const ShoppingCart = () => {
 	const cart = useSelector((state) => state.cart.cartItems);
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
 	const handleRemove = (isbn) => {
-		console.log("Remove from cart", isbn);
 		dispatch(removeFromCart(isbn));
+	};
+
+	const handleClearCart = () => {
+		dispatch(clearCart());
 	};
 	return (
 		<>
@@ -104,7 +109,10 @@ const ShoppingCart = () => {
 										</div>
 									);
 								})}
-								<button className="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none rounded text-gray-800 border border-gray-300 px-8 py-3 text-sm">
+								<button
+									onClick={() => handleClearCart()}
+									className="mt-5 flex mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none rounded text-gray-800 border border-gray-300 px-8 py-3 text-sm"
+								>
 									Clear Cart
 								</button>
 							</div>
