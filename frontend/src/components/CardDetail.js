@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 //import { fetchAsyncBook } from "../features/books/booksSlice";
 import { fetchAsyncBook, clearBook } from "../features/book/bookSlice";
 import { Link } from "react-router-dom";
+import { addToCart } from "../features/cart/cartSlice";
 //Components
 import Stars from "./Stars";
 import Spinner from "./spinner/Spinner";
 
 const CardDetail = () => {
-	//const [readMore, setReadMore] = useState(false);
 	const navigate = useNavigate();
 	const { isbn } = useParams();
 	const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const CardDetail = () => {
 	const randomViews = Math.floor(Math.random() * 55) + 1;
 
 	const handleCart = () => {
+		dispatch(addToCart(book));
 		navigate("/shoppingCart");
 	};
 

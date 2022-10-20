@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart } from "../features/cart/cartSlice";
 
 const ShoppingCart = () => {
+	const cart = useSelector((state) => state.cart.cartItems);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const handleRemove = (isbn) => {
+		console.log("Remove from cart", isbn);
+		dispatch(removeFromCart(isbn));
+	};
 	return (
 		<>
 			<div>
@@ -40,55 +48,67 @@ const ShoppingCart = () => {
 								<p className="text-5xl font-black leading-10 text-gray-800 pt-3">
 									Shopping Cart
 								</p>
-								<div className="md:flex items-center mt-14 py-8 border-t border-gray-200 ">
-									<div className="w-1/4">
-										<img
-											src="https://res.cloudinary.com/dc6vqigdn/image/upload/v1664834378/BookStore/21_Lessons_g9gxnf.jpg"
-											alt="title"
-											className="w-full h-full object-center object-cover"
-										/>
-									</div>
-									<div className="md:pl-3 md:w-3/4">
-										<p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4">
-											ISBN : b1a199b6-428f-4e5b-8fc3-fd6b99e1b1a6
-										</p>
-										<div className="flex items-center justify-between w-full pt-1">
-											<p className="text-base font-black leading-none text-gray-800">
-												21 Lessons for the 21st Century
-											</p>
-											<select className="py-2 px-1 border border-gray-200 mr-6 focus:outline-none">
-												<option>01</option>
-												<option>02</option>
-												<option>03</option>
-											</select>
-										</div>
-										<p className="text-xs leading-3 text-gray-600 pt-2">
-											Author : Yuval Noah Harari
-										</p>
-										<p className="text-xs leading-3 text-gray-600 py-4">
-											Number of Pages : 400
-										</p>
-										<p className="w-96 text-xs leading-3 text-gray-600">
-											Review : "Fascinating . . . a crucial global conversation
-											about how to take on the problems of the twenty-first
-											century"
-										</p>
-										<div className="flex items-center justify-between pt-5 pr-6">
-											<div className="flex itemms-center">
-												<p className="text-xs leading-3 underline text-gray-800 cursor-pointer">
-													Add to favorites
-												</p>
-												<p className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">
-													Remove
-												</p>
+								{cart.map((item) => {
+									return (
+										<div
+											className="md:flex items-center mt-14 py-8 border-t border-gray-200"
+											key={item.isbn}
+										>
+											<div className="w-1/4">
+												<img
+													src={item.image}
+													alt="title"
+													className="w-full h-full object-center object-cover"
+												/>
 											</div>
-											<p className="text-base font-black leading-none text-gray-800">
-												$9,000
-											</p>
+											<div className="md:pl-3 md:w-3/4">
+												<p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4">
+													ISBN : {item.isbn}
+												</p>
+												<div className="flex items-center justify-between w-full pt-1">
+													<p className="text-base font-black leading-none text-gray-800">
+														{item.title}
+													</p>
+													<select className="py-2 px-1 border border-gray-200 mr-6 focus:outline-none">
+														<option>01</option>
+														<option>02</option>
+														<option>03</option>
+													</select>
+												</div>
+												<p className="text-xs leading-3 text-gray-600 pt-2">
+													Author : {item.author}
+												</p>
+												<p className="text-xs leading-3 text-gray-600 py-4">
+													Number of Pages : {item.num_pages}
+												</p>
+												<p className="w-96 text-xs leading-3 text-gray-600">
+													Review : {item.review}
+												</p>
+												<div className="flex items-center justify-between pt-5 pr-6">
+													<div className="flex itemms-center">
+														<p className="text-xs leading-3 underline text-gray-800 cursor-pointer">
+															Add to favorites
+														</p>
+														<p
+															onClick={() => handleRemove(item.isbn)}
+															className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer"
+														>
+															Remove
+														</p>
+													</div>
+													<p className="text-base font-black leading-none text-gray-800">
+														${item.price}
+													</p>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
+									);
+								})}
+								<button className="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none rounded text-gray-800 border border-gray-300 px-8 py-3 text-sm">
+									Clear Cart
+								</button>
 							</div>
+
 							<div className="xl:w-1/2 md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full">
 								<div className="flex flex-col md:h-screen px-14 py-20 justify-between overflow-y-auto">
 									<div>
