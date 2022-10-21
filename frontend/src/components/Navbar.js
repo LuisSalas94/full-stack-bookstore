@@ -4,8 +4,10 @@ import logo from "../images/logo.png";
 import Bars from "./Bars";
 import { fetchAsyncSearch } from "../features/books/booksSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+	const { cartTotalQuantity } = useSelector((state) => state.cart);
 	const dispatch = useDispatch();
 	const [click, setClick] = useState(true);
 	const inputRef = useRef("");
@@ -85,7 +87,7 @@ const Navbar = () => {
 							<li>
 								<div className="inline-flex relative w-fit mx-3 md:mx-0">
 									<div className="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-1 text-xs bg-zinc-800 rounded-full z-10 text-zinc-400">
-										22
+										{cartTotalQuantity}
 									</div>
 									<div className="px-1.5 py-1.5 bg-gray-300 flex items-center justify-center text-center rounded-lg shadow-lg">
 										<div>

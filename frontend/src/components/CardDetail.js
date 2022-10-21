@@ -115,9 +115,9 @@ const CardDetail = () => {
 									</span>
 									<button
 										onClick={() => handleCart()}
-										className="flex ml-auto text-white bg-indigo-400 border-0 py-2 px-3 focus:outline-none rounded"
+										className="flex ml-auto text-white leading-none bg-gray-800  py-3 px-3 focus:ring-gray-800 rounded-md"
 									>
-										Add to Cart
+										Add to Car
 									</button>
 
 									<Link

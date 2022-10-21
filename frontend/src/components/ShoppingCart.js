@@ -4,16 +4,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, clearCart } from "../features/cart/cartSlice";
 import ConfirmationCard from "./ConfirmationCard";
 import { getIsbn } from "../features/isbn/isbnSlice";
-import { decreaseCartQuantity, addToCart } from "../features/cart/cartSlice";
+import {
+	decreaseCartQuantity,
+	addToCart,
+	getTotals,
+} from "../features/cart/cartSlice";
 
 const ShoppingCart = () => {
-	const [showConfirmation, setShowConfirmation] = useState(false);
-	const confirmation = useSelector((state) => state.isbn.showConfirmation);
-	//console.log("confirmation: ", confirmation);
+	// const [showConfirmation, setShowConfirmation] = useState(false);
+	// const confirmation = useSelector((state) => state.isbn.showConfirmation);
 	const cart = useSelector((state) => state.cart.cartItems);
-
+	const cart2 = useSelector((state) => state.cart);
+	//const { cartTotalAmount } = useSelector((state) => state.cart);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getTotals());
+	}, [cart2, dispatch]);
 
 	const handleRemove = (isbn) => {
 		dispatch(removeFromCart(isbn));
@@ -28,8 +36,6 @@ const ShoppingCart = () => {
 
 	const handleDecrease = (item) => {
 		dispatch(decreaseCartQuantity(item));
-		console.log(decreaseCartQuantity(item.isbn));
-		console.log("#jojo");
 	};
 
 	const handleIncrease = (item) => {
@@ -87,11 +93,8 @@ const ShoppingCart = () => {
 												/>
 											</div>
 											<div className="md:pl-3 md:w-3/4">
-												<p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4">
-													<span className="font-bold"> ISBN :</span> {item.isbn}
-												</p>
 												<div className="flex items-center justify-between w-full pt-1">
-													<p className="text-base font-black leading-none text-gray-800">
+													<p className="text-xl font-black leading-none text-gray-800">
 														{item.title}
 													</p>
 
@@ -118,32 +121,42 @@ const ShoppingCart = () => {
 														</button>
 													</div>
 												</div>
-												<p className="text-xs leading-3 text-gray-600 pt-2">
+												<p className="text-sm leading-3 text-gray-600 pt-2">
 													<span className="font-bold"> Author : </span>
 													{item.author}
 												</p>
-												<p className="text-xs leading-3 text-gray-600 py-4">
+												<p className="my-3 text-sm leading-3 text-gray-600 pt-2">
+													<span className="font-bold"> ISBN : </span>
+													{item.isbn}
+												</p>
+												<p className="text-sm my-3 leading-3 text-gray-600 py-4">
 													<span className="font-bold">Number of Pages :</span>{" "}
 													{item.num_pages}
 												</p>
-												<p className="w-96 text-xs leading-3 text-gray-600">
+												<p className="text-sm my-3 leading-3 text-gray-600 py-4">
+													<span className="font-bold">Price :</span>{" "}
+													{item.price}
+												</p>
+
+												<p className="w-96 text-sm leading-3 text-gray-600">
 													<span className="font-bold">Review :</span>{" "}
 													<span className="italic">{item.review}</span>
 												</p>
 												<div className="flex items-center justify-between pt-5 pr-6">
 													<div className="flex itemms-center">
-														<p className="text-xs leading-3 underline text-gray-800 cursor-pointer">
+														<p className="text-sm leading-3 underline text-gray-800 cursor-pointer">
 															Add to wishlist
 														</p>
 														<p
 															onClick={() => handleRemove(item.isbn)}
-															className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer"
+															className="text-sm leading-3 underline text-red-500 pl-5 cursor-pointer"
 														>
 															Remove
 														</p>
 													</div>
-													<p className="text-base font-black leading-none text-gray-800">
-														${item.price}
+													<p className="text-sm font-black leading-none text-gray-800">
+														Total Price: $
+														{(item.price * item.cartQuantity).toFixed(2)}
 													</p>
 												</div>
 											</div>
@@ -151,13 +164,15 @@ const ShoppingCart = () => {
 									);
 								})}
 
-								<button
-									onClick={() => handleClearCart()}
-									className="mt-5 flex mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none rounded text-gray-800 border border-gray-300 px-8 py-3 text-sm"
-								>
-									Clear Cart
-								</button>
-								{showConfirmation && <ConfirmationCard />}
+								{cart.length >= 1 && (
+									<button
+										onClick={() => handleClearCart()}
+										className="mt-5 flex mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none rounded text-gray-800 border border-gray-300 px-8 py-3 text-sm"
+									>
+										Clear Cart
+									</button>
+								)}
+								{/* {showConfirmation && <ConfirmationCard />} */}
 							</div>
 
 							<div className="xl:w-1/2 md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full">
@@ -168,41 +183,29 @@ const ShoppingCart = () => {
 										</p>
 										<div className="flex items-center justify-between pt-16">
 											<p className="text-base leading-none text-gray-800">
-												Subtotal
+												Subtotal:
 											</p>
 											<p className="text-base leading-none text-gray-800">
-												$9,000
+												${cart2.cartTotalAmount.toFixed(2)}
 											</p>
 										</div>
-										<div className="flex items-center justify-between pt-5">
-											<p className="text-base leading-none text-gray-800">
-												Shipping
-											</p>
-											<p className="text-base leading-none text-gray-800">
-												$30
-											</p>
+										<div>
+											<div className=" lg:mt-8 flex items-center pb-6 justify-between lg:pt-5 pt-20">
+												<p className="text-2xl leading-normal text-gray-800">
+													Total:
+												</p>
+												<p className="text-2xl font-bold leading-normal text-right text-gray-800">
+													${cart2.cartTotalAmount.toFixed(2)}
+												</p>
+											</div>
+
+											<button className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white rounded-md">
+												Checkout
+											</button>
+											<h6 className="text-xs text-zinc-600 pt-2 italic text-center">
+												Taxes and shipping calculated at checkout
+											</h6>
 										</div>
-										<div className="flex items-center justify-between pt-5">
-											<p className="text-base leading-none text-gray-800">
-												Tax
-											</p>
-											<p className="text-base leading-none text-gray-800">
-												$35
-											</p>
-										</div>
-									</div>
-									<div>
-										<div className="flex items-center pb-6 justify-between lg:pt-5 pt-20">
-											<p className="text-2xl leading-normal text-gray-800">
-												Total
-											</p>
-											<p className="text-2xl font-bold leading-normal text-right text-gray-800">
-												$10,240
-											</p>
-										</div>
-										<button className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white">
-											Checkout
-										</button>
 									</div>
 								</div>
 							</div>
