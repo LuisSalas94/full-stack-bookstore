@@ -1,0 +1,3 @@
+Authentication
+- npm i mongoose dotenv
+- npm i jsonwebtoken bcrypt joi 
