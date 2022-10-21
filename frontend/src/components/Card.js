@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Card = () => {
 	const dispatch = useDispatch();
 	const books = useSelector((state) => state.books.books);
+	const auth = useSelector((state) => state.auth);
 
 	useEffect(() => {
 		dispatch(fetchAsyncBooks());

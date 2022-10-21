@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import Bars from "./Bars";
 import { fetchAsyncSearch } from "../features/books/booksSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../features/authSlice";
 
 const Navbar = () => {
 	const { cartTotalQuantity } = useSelector((state) => state.cart);
+	const auth = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	const [click, setClick] = useState(true);
 	const inputRef = useRef("");
@@ -20,6 +21,7 @@ const Navbar = () => {
 		const search = inputRef.current.value;
 		dispatch(fetchAsyncSearch(search));
 	};
+
 	return (
 		<nav className="bg-stone-100 mb-5 border-gray-200 px-2 sm:px-4 py-3 rounded shadow-lg md:py-4">
 			<div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -67,7 +69,15 @@ const Navbar = () => {
 							placeholder="Search by Title or Author"
 						/>
 						<ul className="flex flex-row justify-center p-1 gap-5 bg-stone-100 rounded-lg    md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-stone-100 md:items-center">
-							<li>
+							{auth._id ? (
+								<li onClick={() => dispatch(logoutUser(null))}>Logout</li>
+							) : (
+								<li>
+									<Link to="/login">Login</Link>
+									<Link to="/register">Register</Link>
+								</li>
+							)}
+							{/* <li>
 								<Link
 									to="/login"
 									className="block py-2 pr-4 pl-3 text-zinc-600  rounded md:bg-transparent md:text-zinc-600 md:p-0 text-base"
@@ -83,7 +93,7 @@ const Navbar = () => {
 								>
 									Register
 								</Link>
-							</li>
+							</li> */}
 							<li>
 								<div className="inline-flex relative w-fit mx-3 md:mx-0">
 									<div className="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-1 text-xs bg-zinc-800 rounded-full z-10 text-zinc-400">

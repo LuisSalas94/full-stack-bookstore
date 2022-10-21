@@ -15,6 +15,7 @@ const ShoppingCart = () => {
 	// const confirmation = useSelector((state) => state.isbn.showConfirmation);
 	const cart = useSelector((state) => state.cart.cartItems);
 	const cart2 = useSelector((state) => state.cart);
+	const auth = useSelector((state) => state.auth);
 	//const { cartTotalAmount } = useSelector((state) => state.cart);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -198,10 +199,23 @@ const ShoppingCart = () => {
 													${cart2.cartTotalAmount.toFixed(2)}
 												</p>
 											</div>
-
+											{auth._id ? (
+												<button className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white rounded-md">
+													Checkout
+												</button>
+											) : (
+												<button
+													onClick={() => navigate("/login")}
+													className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white rounded-md"
+												>
+													Login to Checkout
+												</button>
+											)}
+											{/* 
 											<button className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white rounded-md">
 												Checkout
-											</button>
+											</button> */}
+
 											<h6 className="text-xs text-zinc-600 pt-2 italic text-center">
 												Taxes and shipping calculated at checkout
 											</h6>
