@@ -9,12 +9,15 @@ import Home from "./components/Home";
 import CardDetail from "./components/CardDetail";
 import ShoppingCart from "./components/ShoppingCart";
 import Register from "./components/auth/Register";
+//testing
+import Navbar2 from "./components/Navbar2";
 
 function App() {
 	return (
 		<div className="">
 			<BrowserRouter>
-				<Navbar />
+				{/* <Navbar /> */}
+				<Navbar2 />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/shoppingCart" element={<ShoppingCart />} />
