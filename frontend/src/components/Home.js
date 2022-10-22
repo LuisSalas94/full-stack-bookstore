@@ -3,14 +3,19 @@ import React from "react";
 import Card from "./Card";
 import Hero from "./ui/Hero";
 import Features from "./ui/Features";
-import { useSelector } from "react-redux";
+import Cards from "./Cards";
+import Feature2 from "./ui/Feature2";
+import FAQ from "./ui/FAQ";
 
 const Home = () => {
 	return (
 		<div className="">
-			{/* <Card /> */}
 			<Hero />
 			<Features />
+			<Cards />
+			<Feature2 />
+			<FAQ />
+			{/* <Card /> */}
 		</div>
 	);
 };

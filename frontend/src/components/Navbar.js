@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
-import Bars from "./Bars";
+//import Bars from "./Bars";
 import { fetchAsyncSearch } from "../features/books/booksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../features/authSlice";
@@ -32,9 +32,7 @@ const Navbar = () => {
 					</span>
 				</Link>
 				<div className="flex md:order-2">
-					<div className="md:hidden cursor-pointer" onClick={handleClick}>
-						<Bars />
-					</div>
+					<div className="md:hidden cursor-pointer" onClick={handleClick}></div>
 					<div className="hidden relative md:block">
 						<div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
 							<svg

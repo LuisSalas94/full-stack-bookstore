@@ -3,7 +3,7 @@ import Star from "./Star";
 
 const Starts = () => {
 	return (
-		<div className="flex gap-1 mt-2">
+		<div className="flex gap-2 justify-center">
 			<Star />
 			<Star />
 			<Star />
