@@ -38,7 +38,7 @@ const Features = () => {
 					can I find the best books online?
 				</h2>
 				<p className="text-base text-gray-700 md:text-lg">
-					You can find used books online right here on the Book Oulet website.
+					You can find used books online right here on the Book Outlet website.
 					We offer multiple ways for you to find your next read, including our
 					search bar that allows you to search for books by title or author, or
 					you can browse by genre, price, and even free shipping.
@@ -65,7 +65,7 @@ const Features = () => {
 						Independent sellers
 					</h6>
 					<p className="mb-3 text-sm text-gray-900">
-						Millions of books and other items are listed for sale on Book Oulet
+						Millions of books and other items are listed for sale on Book Outlet
 						by trusted sellers from around the world.
 					</p>
 					<a
@@ -123,7 +123,7 @@ const Features = () => {
 					</div>
 					<h6 className="mb-3 text-xl font-bold leading-5">Feel the love</h6>
 					<p className="mb-3 text-sm text-gray-900">
-						We asked customers to tell us why they love shopping on Book Oulet
+						We asked customers to tell us why they love shopping on Book Outlet
 						and we were overwhelmed by their kind words.
 					</p>
 					<a
@@ -152,7 +152,7 @@ const Features = () => {
 					</div>
 					<h6 className="mb-3 text-xl font-bold leading-5">More to explore</h6>
 					<p className="mb-3 text-sm text-gray-900">
-						Book Oulet regularly publishes fascinating features about a huge
+						Book Outlet regularly publishes fascinating features about a huge
 						variety of bookish subjects, publishers, and interesting characters
 						in literature and notable anniversaries.
 					</p>

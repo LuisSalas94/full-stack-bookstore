@@ -1,6 +1,5 @@
 import React from "react";
-//import Carousel from "./Carousel";
-import Card from "./Card";
+//Components
 import Hero from "./ui/Hero";
 import Features from "./ui/Features";
 import Cards from "./Cards";
@@ -17,7 +16,6 @@ const Home = () => {
 			<Feature2 />
 			<FAQ />
 			<Footer />
-			{/* <Card /> */}
 		</div>
 	);
 };

@@ -23,7 +23,7 @@ const Navbar2 = () => {
 	};
 
 	return (
-		<div className="bg-white rounded shadow-md">
+		<div className="bg-zinc-100 rounded shadow-md">
 			<div className="container mx-auto relative">
 				<div className="py-1 mx-4 md:mx-6 ">
 					<div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 py-4">

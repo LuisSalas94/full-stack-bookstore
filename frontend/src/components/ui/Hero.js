@@ -30,7 +30,7 @@ const Hero = () => {
 						<span className="inline-block text-purple-400">is real</span>
 					</h2>
 					<p className="pr-5 mb-5 text-base text-gray-700 md:text-lg">
-						At Book Oulet, our core focus is Enchanting the Mind. This is our
+						At Book Outlet, our core focus is Enchanting the Mind. This is our
 						why, our purpose, our passion behind everything we do. We believe we
 						are not just selling books, rather we are impacting the lives of
 						millions of people both locally and across the globe.
