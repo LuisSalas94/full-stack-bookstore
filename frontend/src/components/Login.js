@@ -30,7 +30,7 @@ const Login = () => {
 	return (
 		<div className="px-5 flex justify-center mt-28">
 			<div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow  sm:px-6 md:px-8 lg:px-10">
-				<div className="self-center mb-6 text-xl font-light text-gray-800 sm:text-2xl ">
+				<div className="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl ">
 					Login To Your Account
 				</div>
 				<div className="mt-8">
