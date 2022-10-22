@@ -1,96 +1,15 @@
-// import React from "react";
-
-// const Login = () => {
-// 	return (
-// 		<section class="h-full gradient-form bg-gray-200 md:h-screen">
-// 			<div class="container py-12 px-6 h-full">
-// 				<div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-// 					<div class="xl:w-10/12">
-// 						<div class="block bg-white shadow-lg rounded-lg">
-// 							<div class="lg:flex lg:flex-wrap g-0">
-// 								<div class="lg:w-6/12 px-4 md:px-0">
-// 									<div class="md:p-12 md:mx-6">
-// 										<div class="text-center">
-// 											<img
-// 												class="mx-auto w-48"
-// 												src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-// 												alt="logo"
-// 											/>
-// 											<h4 class="text-xl font-semibold mt-1 mb-12 pb-1">
-// 												We are The Lotus Team
-// 											</h4>
-// 										</div>
-// 										<form>
-// 											<p class="mb-4">Please login to your account</p>
-// 											<div class="mb-4">
-// 												<input
-// 													type="email"
-// 													class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-// 													id="exampleFormControlInput1"
-// 													placeholder="Email"
-// 												/>
-// 											</div>
-// 											<div class="mb-4">
-// 												<input
-// 													type="password"
-// 													class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-// 													id="exampleFormControlInput1"
-// 													placeholder="Password"
-// 												/>
-// 											</div>
-// 											<div class="text-center pt-1 mb-12 pb-1">
-// 												<button
-// 													class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-// 													type="button"
-// 													data-mdb-ripple="true"
-// 													style={{ backgroundColor: "#3f51b5" }}
-// 												>
-// 													Log in
-// 												</button>
-// 												<a class="text-gray-500" href="#!">
-// 													Forgot password?
-// 												</a>
-// 											</div>
-// 											<div class="flex items-center justify-between pb-6">
-// 												<p class="mb-0 mr-2">Don't have an account?</p>
-// 												<button
-// 													type="button"
-// 													class="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-// 													data-mdb-ripple="true"
-// 													data-mdb-ripple-color="light"
-// 												>
-// 													Danger
-// 												</button>
-// 											</div>
-// 										</form>
-// 									</div>
-// 								</div>
-// 							</div>
-// 						</div>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</section>
-// 	);
-// };
-
-// export default Login;
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/authSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	//Redux
 	const auth = useSelector((state) => state.auth);
+	const dispatch = useDispatch();
 
-	useEffect(() => {
-		if (auth._id) {
-			navigate("/shoppingCart");
-		}
-	}, [auth._id, navigate]);
+	//Hooks
+	const navigate = useNavigate();
 
 	const [user, setUser] = useState({
 		email: "",
@@ -102,24 +21,86 @@ const Login = () => {
 		dispatch(loginUser(user));
 	};
 
+	useEffect(() => {
+		if (auth._id) {
+			navigate("/shoppingCart");
+		}
+	}, [auth._id, navigate]);
+
 	return (
-		<form onSubmit={handleSubmit}>
-			<h2>Login</h2>
-			<input
-				type="email"
-				placeholder="email"
-				onChange={(e) => setUser({ ...user, email: e.target.value })}
-			/>
-			<input
-				type="password"
-				placeholder="password"
-				onChange={(e) => setUser({ ...user, password: e.target.value })}
-			/>
-			<button>
-				{auth.loginStatus === "pending" ? "Submitting..." : "Login"}
-			</button>
-			{auth.loginStatus === "rejected" ? <p>{auth.loginError}</p> : null}
-		</form>
+		<div className="px-5 flex justify-center mt-28">
+			<div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow  sm:px-6 md:px-8 lg:px-10">
+				<div className="self-center mb-6 text-xl font-light text-gray-800 sm:text-2xl ">
+					Login To Your Account
+				</div>
+				<div className="mt-8">
+					<form action="#" autoComplete="off" onSubmit={handleSubmit}>
+						<div className="flex flex-col mb-2">
+							<div className="flex relative ">
+								<span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+									<svg
+										width="15"
+										height="15"
+										fill="currentColor"
+										viewBox="0 0 1792 1792"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"></path>
+									</svg>
+								</span>
+								<input
+									type="email"
+									id="sign-in-email"
+									onChange={(e) => setUser({ ...user, email: e.target.value })}
+									className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-transparent"
+									placeholder="Your email"
+								/>
+							</div>
+						</div>
+						<div className="flex flex-col mb-6">
+							<div className="flex relative ">
+								<span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+									<svg
+										width="15"
+										height="15"
+										fill="currentColor"
+										viewBox="0 0 1792 1792"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path d="M1376 768q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-320q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45q0-106-75-181t-181-75-181 75-75 181v320h736z"></path>
+									</svg>
+								</span>
+								<input
+									type="password"
+									id="sign-in-email"
+									onChange={(e) =>
+										setUser({ ...user, password: e.target.value })
+									}
+									className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-100 focus:border-transparent"
+									placeholder="Your password"
+								/>
+							</div>
+						</div>
+						<div className="flex w-full">
+							<button
+								type="submit"
+								className="py-2 px-4  bg-gray-800 hover:bg-gray-700 focus:ring-gray-300 focus:ring-offset-gray-300 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+							>
+								Login
+							</button>
+						</div>
+					</form>
+				</div>
+				<div className="flex items-center justify-center mt-6">
+					<Link
+						to="/register"
+						className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-800 "
+					>
+						<span className="ml-2">You don&#x27;t have an account?</span>
+					</Link>
+				</div>
+			</div>
+		</div>
 	);
 };
 
