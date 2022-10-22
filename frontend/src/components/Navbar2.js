@@ -23,7 +23,7 @@ const Navbar2 = () => {
 	};
 
 	return (
-		<div className="bg-stone-50 rounded shadow-md">
+		<div className="bg-white rounded shadow-md">
 			<div className="container mx-auto relative">
 				<div className="py-1 mx-4 md:mx-6 ">
 					<div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 py-4">
@@ -65,13 +65,13 @@ const Navbar2 = () => {
 									<li>
 										<Link
 											to="/login"
-											className=" text-base text-right text-gray-800 focus:outline-none hover:underline"
+											className="inline-flex items-center justify-center h-9 px-5 mr-6 font-medium tracking-wide transition duration-200 rounded shadow-md  text-purple-400 border	border-purple-400	hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
 										>
 											Login
 										</Link>
 										<Link
 											to="/register"
-											className=" text-base text-right text-gray-800 focus:outline-none hover:underline ml-10"
+											className="inline-flex items-center justify-center h-9 px-5 mr-6 font-medium tracking-wide transition duration-200 rounded shadow-md  text-purple-400 border	border-purple-400	hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
 										>
 											Register
 										</Link>
@@ -182,7 +182,7 @@ const Navbar2 = () => {
 							onChange={searchByInput}
 							type="text"
 							placeholder="Search by Title or Author"
-							className="focus:outline-none bg-transparent text-sm text-gray-800"
+							className="focus:outline-none bg-transparent text-sm text-gray-900"
 						/>
 					</div>
 				</div>
