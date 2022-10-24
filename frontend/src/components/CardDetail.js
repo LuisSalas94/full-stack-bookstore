@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-//import { fetchAsyncBook } from "../features/books/booksSlice";
 import { fetchAsyncBook, clearBook } from "../features/book/bookSlice";
 import { Link } from "react-router-dom";
 import { addToCart } from "../features/cart/cartSlice";
 //Components
 import Stars from "./Stars";
 import Spinner from "./spinner/Spinner";
+//Toastify
+import { toast } from "react-toastify";
 
 const CardDetail = () => {
 	const navigate = useNavigate();
@@ -27,6 +28,9 @@ const CardDetail = () => {
 
 	const handleCart = () => {
 		dispatch(addToCart(book));
+		toast.success(`${book.title} was added to Shopping Cart!`, {
+			position: "bottom-left",
+		});
 		navigate("/shoppingCart");
 	};
 

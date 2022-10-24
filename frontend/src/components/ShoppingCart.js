@@ -8,10 +8,9 @@ import {
 	addToCart,
 	getTotals,
 } from "../features/cart/cartSlice";
+import { toast } from "react-toastify";
 
 const ShoppingCart = () => {
-	// const [showConfirmation, setShowConfirmation] = useState(false);
-	// const confirmation = useSelector((state) => state.isbn.showConfirmation);
 	const cart = useSelector((state) => state.cart.cartItems);
 	const cart2 = useSelector((state) => state.cart);
 	const auth = useSelector((state) => state.auth);
@@ -23,8 +22,12 @@ const ShoppingCart = () => {
 		dispatch(getTotals());
 	}, [cart2, dispatch]);
 
-	const handleRemove = (isbn) => {
+	const handleRemove = (isbn, item) => {
 		dispatch(removeFromCart(isbn));
+		toast.info(`${item.title} was removed from Shopping Cart!`, {
+			position: "bottom-left",
+		});
+
 		//setShowConfirmation(true);
 		//dispatch(getIsbn(isbn));
 		//setShowConfirmation(confirmation);
@@ -148,7 +151,7 @@ const ShoppingCart = () => {
 															Add to wishlist
 														</p>
 														<p
-															onClick={() => handleRemove(item.isbn)}
+															onClick={() => handleRemove(item.isbn, item)}
 															className="text-sm leading-3 underline text-red-500 pl-5 cursor-pointer"
 														>
 															Remove

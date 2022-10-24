@@ -4,6 +4,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
+//react toastify
+import { ToastContainer } from "react-toastify";
+//toastify
+import "react-toastify/dist/ReactToastify.css";
 //Redux
 import { Provider } from "react-redux";
 import store from "./features/store";
@@ -11,6 +15,7 @@ import store from "./features/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
+		<ToastContainer />
 		<Provider store={store}>
 			<App />
 		</Provider>
