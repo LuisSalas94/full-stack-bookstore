@@ -50,7 +50,7 @@ const CardDetail = () => {
 								<h2 className="text-sm title-font text-gray-500 tracking-widest">
 									ON SALE
 								</h2>
-								<h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+								<h1 className="text-gray-900 text-lg md:text-3xl title-font font-medium mb-1">
 									{book.title}
 								</h1>
 								<h1 className="text-gray-900 text-sm title-font font-medium mb-1 mt-2">
@@ -106,16 +106,19 @@ const CardDetail = () => {
 								<h2 className="text-lg title-font text-gray-900 tracking-widest my-3">
 									About the Book
 								</h2>
-								<p className="leading-relaxed text-base font-light">
+								<p className="leading-relaxed text-sm  md:text-base font-light text-gray-700">
 									{book.description}
 								</p>
-								<div className="flex mt-5">
-									<span className="title-font font-medium text-2xl text-gray-900">
-										${book.price}
+								<div className="flex mt-5 items-center">
+									<span className="title-font text-lg md:text-2xl text-gray-900">
+										<span className="text-rose-500 line-through">
+											${book.price + 2}
+										</span>{" "}
+										- ${book.price}
 									</span>
 									<button
 										onClick={() => handleCart()}
-										className="flex ml-auto text-white leading-none bg-gray-800  py-3 px-3 focus:ring-gray-800 rounded-md"
+										className="flex ml-auto leading-none bg-white border border-purple-400 text-purple-400 py-2 px-2 md: py-3 px-3 focus:ring-gray-800 rounded-md"
 									>
 										Add to Car
 									</button>
@@ -149,36 +152,36 @@ const CardDetail = () => {
 									Detail of the Book
 								</h2>
 								<div className="mt-3">
-									<h1 className="text-gray-900 text-base title-font font-medium mb-1">
+									<h1 className="text-gray-900 text-sm md:text-base title-font font-medium mb-1">
 										ISBN:{" "}
-										<span className="leading-relaxed text-base font-light">
+										<span className="leading-relaxed text-base font-light text-gray-700">
 											{book.isbn}
 										</span>
 									</h1>
-									<h1 className="text-gray-900 text-base title-font font-medium mb-1">
+									<h1 className="text-gray-900 text-sm md:text-base title-font font-medium my-1">
 										Price:{" "}
-										<span className="leading-relaxed text-base font-light">
+										<span className="leading-relaxed text-base font-light text-gray-700">
 											$ {book.price}
 										</span>
 									</h1>
-									<h1 className="text-gray-900 text-base title-font font-medium mb-1">
+									<h1 className="text-gray-900 text-sm md:text-sm  title-font font-medium my-1">
 										Publishing House:{" "}
-										<span className="leading-relaxed text-base font-light">
+										<span className="leading-relaxed text-base font-light text-gray-700">
 											{book.publisher}
 										</span>
 									</h1>
-									<h1 className="text-gray-900 text-base title-font font-medium mb-1">
+									<h1 className="text-gray-900 text-sm md:text-base title-font font-medium my-1">
 										Number of Pages:{" "}
-										<span className="leading-relaxed text-base font-light">
+										<span className="leading-relaxed text-base font-light text-gray-700 ">
 											{book.num_pages}
 										</span>
 									</h1>
-									<h1 className="text-gray-900 text-base title-font font-medium mb-1">
+									<h1 className="text-gray-900 text-sm md:text-base title-font font-medium mb-1">
 										Review:{" "}
-										<span className="leading-relaxed text-base font-light italic">
-											"{book.review}" by{" "}
+										<span className="leading-relaxed text-sm md:text-base font-light italic text-gray-700">
+											"{book.review}" by
 										</span>
-										<span className="text-gray-900 text-base title-font font-medium">
+										<span className="text-gray-900 text-sm md:text-base title-font font-medium ml-2">
 											{book.review_author}
 										</span>
 									</h1>
@@ -190,13 +193,13 @@ const CardDetail = () => {
 								<h2 className="text-lg title-font text-gray-900 tracking-widest">
 									About the Author
 								</h2>
-								<div className="flex flex-col items-center gap-10 md:flex-row">
+								<div className="flex flex-col items-center gap-10 md:flex-row mt-2">
 									<img
 										src={book.author_image}
 										alt={book.author}
 										className="rounded-full w-28 h-28 mt-4"
 									/>
-									<p className="leading-relaxed text-base font-light">
+									<p className="leading-relaxed text-sm md:text-base font-light text-gray-700">
 										{book.author_info}
 									</p>
 								</div>

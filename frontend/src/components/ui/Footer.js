@@ -19,13 +19,10 @@ const Footer = () => {
 					<div className="mt-6 lg:max-w-sm">
 						<p className="text-sm text-zinc-50">
 							I'm Fernando Salas a Full-Stack Web Developer based in Lima -
-							Peru.
-						</p>
-						<p className="mt-4 text-sm text-zinc-50">
-							1300+ Hours of experience mastering Algorithms & Data Structures,
-							and Full-Stack development skills - 1.2k+ Github Commits - 20+
-							Succes Projects - 4+ Articles published on Medium with more than
-							4.2k views.
+							Peru. With more than 1300+ Hours of experience mastering Data
+							Structures & Algorithms, and Full-Stack development skills - 1.2k+
+							Github Commits - 20+ Succes Projects - 4+ Articles published on
+							Medium with more than 4.2k views.
 						</p>
 					</div>
 				</div>
