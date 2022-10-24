@@ -31,7 +31,7 @@ const Login = () => {
 		<div className="px-5 flex justify-center mt-28">
 			<div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow  sm:px-6 md:px-8 lg:px-10">
 				<div className="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl ">
-					Login To Your Account
+					Login to your account
 				</div>
 				<div className="mt-8">
 					<form action="#" autoComplete="off" onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ const Login = () => {
 						<div className="flex w-full">
 							<button
 								type="submit"
-								className="py-2 px-4  bg-gray-800 hover:bg-gray-700 focus:ring-gray-300 focus:ring-offset-gray-300 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+								className="py-2 px-4  bg-purple-400 hover:bg-purple-700 focus:ring-gray-300 focus:ring-offset-gray-300 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
 							>
 								Login
 							</button>

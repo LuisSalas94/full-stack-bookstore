@@ -24,8 +24,7 @@ const Hero = () => {
 						Enchanting The Mind
 					</p>
 					<h2 className="mb-5 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-						Everything you
-						<br className="hidden md:block" />
+						Everything you <br className="hidden md:block" />
 						can imagine{" "}
 						<span className="inline-block text-purple-400">is real</span>
 					</h2>

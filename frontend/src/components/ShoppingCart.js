@@ -167,7 +167,7 @@ const ShoppingCart = () => {
 								{cart.length >= 1 && (
 									<button
 										onClick={() => handleClearCart()}
-										className="mt-5 flex mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none rounded text-gray-800 border border-gray-300 px-8 py-3 text-sm"
+										className="mt-5 flex mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none rounded text-purple-400 border border-purple-400 px-8 py-3 text-sm"
 									>
 										Clear Cart
 									</button>
@@ -199,13 +199,13 @@ const ShoppingCart = () => {
 												</p>
 											</div>
 											{auth._id ? (
-												<button className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white rounded-md">
+												<button className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-zinc-50 rounded-md">
 													Checkout
 												</button>
 											) : (
 												<button
 													onClick={() => navigate("/login")}
-													className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white rounded-md"
+													className="text-base leading-none w-full py-5 bg-purple-400 border-purple-700 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-700 text-zinc-50 rounded-md"
 												>
 													Login to Checkout
 												</button>

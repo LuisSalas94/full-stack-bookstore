@@ -1,110 +1,347 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import logo from "../images/logo.png";
-//import Bars from "./Bars";
+//components
+import Logo from "./ui/Logo";
 import { fetchAsyncSearch } from "../features/books/booksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../features/authSlice";
 
 const Navbar = () => {
-	const { cartTotalQuantity } = useSelector((state) => state.cart);
-	const auth = useSelector((state) => state.auth);
-	const dispatch = useDispatch();
-	const [click, setClick] = useState(true);
+	//Hooks
+	const [showMenu, setShowMenu] = useState(false);
 	const inputRef = useRef("");
 
-	const handleClick = () => {
-		setClick(!click);
-	};
+	//Redux
+	const dispatch = useDispatch();
+	const { cartTotalQuantity } = useSelector((state) => state.cart);
+	const auth = useSelector((state) => state.auth);
 
+	//Functions
 	const searchByInput = () => {
 		const search = inputRef.current.value;
 		dispatch(fetchAsyncSearch(search));
 	};
 
 	return (
-		<nav className="bg-stone-100 mb-5 border-gray-200 px-2 sm:px-4 py-3 rounded shadow-lg md:py-4">
-			<div className="container flex flex-wrap justify-between items-center mx-auto">
-				<Link to="/" className="flex items-center">
-					<img src={logo} alt="logo" className="mr-1 h-6 sm:h-9 bg-slate-100" />
-					<span className="self-center text-3xl text-zinc-600 font-semibold tracking-widest">
-						ookstore
-					</span>
-				</Link>
-				<div className="flex md:order-2">
-					<div className="md:hidden cursor-pointer" onClick={handleClick}></div>
-					<div className="hidden relative md:block">
-						<div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+		<div className="bg-zinc-50 rounded shadow-md sticky top-0 z-50">
+			<div className="container mx-auto relative">
+				<div className="py-1 mx-4 md:mx-6 ">
+					<div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 py-4">
+						<div>
+							<div
+								className="hidden lg:block cursor-pointer"
+								role="img"
+								aria-label="luxe. Logo."
+							>
+								<Logo />
+							</div>
+							<div
+								className="hidden md:block lg:hidden cursor-pointer "
+								role="img"
+								aria-label="luxe. Logo."
+							>
+								<Logo />
+							</div>
+							<div
+								className="md:hidden cursor-pointer"
+								role="img"
+								aria-label="luxe. Logo."
+							>
+								<Logo />
+							</div>
+						</div>
+						<div className="hidden md:block">
+							<ul className="flex items-center space-x-6">
+								{auth._id ? (
+									<li>
+										<Link
+											onClick={() => dispatch(logoutUser(null))}
+											className=" text-base text-right text-gray-800 focus:outline-none hover:underline"
+										>
+											Logout
+										</Link>
+									</li>
+								) : (
+									<li>
+										<Link
+											to="/login"
+											className="inline-flex items-center justify-center h-9 px-5 mr-6 font-medium tracking-wide transition duration-200 rounded shadow-md  text-purple-400 border	border-purple-400	hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+										>
+											Login
+										</Link>
+										<Link
+											to="/register"
+											className="inline-flex items-center justify-center h-9 px-5 mr-6 font-medium tracking-wide transition duration-200 rounded shadow-md  text-purple-400 border	border-purple-400	hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+										>
+											Sign Up
+										</Link>
+										<Link
+											to="/shoppingCart"
+											className="inline-flex items-center justify-center h-9 px-5 mr-6 font-medium tracking-wide transition duration-200 rounded shadow-md  text-purple-400 border	border-purple-400	hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+										>
+											Shopping Cart
+										</Link>
+									</li>
+								)}
+							</ul>
+						</div>
+
+						<div className="hidden md:flex items-center space-x-4">
+							<Link
+								to="/shoppingCart"
+								aria-label="Bag"
+								className="focus:outline-none focus:ring-2 focus:ring-gray-800 hover:bg-gray-100 p-0.5 rounded"
+							>
+								<button
+									type="button"
+									className="text-md text-white text-4xl relative"
+								>
+									<span className="w-4 h-4 rounded-full absolute right-2 leading text-xs bg-red-500">
+										{cartTotalQuantity}
+									</span>
+									<svg
+										width="20"
+										height="20"
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										strokeWidth={1.5}
+										stroke="currentColor"
+										className="text-gray-800 h-8 w-8"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+										/>
+									</svg>
+								</button>
+							</Link>
+						</div>
+
+						<div className="md:hidden ">
+							<button
+								aria-label="open menu"
+								onClick={() => setShowMenu(true)}
+								className="focus:outline-none focus:ring-2 focus:ring-gray-800 rounded"
+							>
+								<svg
+									className="fill-stroke text-gray-800"
+									width={24}
+									height={24}
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M4 6H20"
+										stroke="currentColor"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<path
+										d="M10 12H20"
+										stroke="currentColor"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<path
+										d="M6 18H20"
+										stroke="currentColor"
+										strokeWidth="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div className="mt-4 pb-4 flex space-x-3 border-b border-gray-200 dark:border-gray-700 ">
+						<div>
 							<svg
-								className="w-5 h-5 text-gray-500"
-								aria-hidden="true"
-								fill="currentColor"
+								className="fill-stroke text-gray-600 "
+								width={20}
+								height={20}
 								viewBox="0 0 20 20"
+								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path
-									fillRule="evenodd"
-									d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-									clipRule="evenodd"
-								></path>
+									d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
+									stroke="currentColor"
+									strokeWidth="1.25"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M19.0004 19.0004L14.6504 14.6504"
+									stroke="currentColor"
+									strokeWidth="1.25"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
 							</svg>
-							<span className="sr-only">Search icon</span>
 						</div>
 						<input
-							type="text"
-							className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-400"
-							placeholder="Search by Title or Author"
 							ref={inputRef}
 							onChange={searchByInput}
+							type="text"
+							placeholder="Search by Title or Author"
+							className="focus:outline-none bg-transparent text-sm text-gray-900"
 						/>
 					</div>
 				</div>
-				{click && (
-					<div className="justify-between items-center w-full md:flex md:w-auto md:order-1">
-						<input
-							type="text"
-							className="text-sm block my-5 p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-400 md:hidden"
-							placeholder="Search by Title or Author"
-						/>
-						<ul className="flex flex-row justify-center p-1 gap-5 bg-stone-100 rounded-lg    md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-stone-100 md:items-center">
-							{auth._id ? (
-								<li onClick={() => dispatch(logoutUser(null))}>Logout</li>
-							) : (
-								<li>
-									<Link to="/login">Login</Link>
-									<Link to="/register">Register</Link>
-								</li>
-							)}
-							<li>
-								<div className="inline-flex relative w-fit mx-3 md:mx-0">
-									<div className="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-1 text-xs bg-zinc-800 rounded-full z-10 text-zinc-400">
-										{cartTotalQuantity}
-									</div>
-									<div className="px-1.5 py-1.5 bg-gray-300 flex items-center justify-center text-center rounded-lg shadow-lg">
-										<div>
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												strokeWidth="1.5"
-												stroke="currentColor"
-												className="w-6 h-6"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-												/>
-											</svg>
-										</div>
-									</div>
-								</div>
+				<div
+					id="mobile-menu"
+					className={`${
+						showMenu ? "flex" : "hidden"
+					} bg-stone-100 md:hidden absolute inset-0 z-10 flex-col w-full h-screen  pt-6 `}
+				>
+					<div className="w-full">
+						<div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3 mx-4 ">
+							<div role="img" aria-label="Luxe. Logo">
+								<Logo />
+							</div>
+							<button
+								aria-label="close menu"
+								onClick={() => setShowMenu(false)}
+								className="text-gray-800  focus:outline-none focus:ring-2 focus:ring-gray-800"
+							>
+								<svg
+									className="fill-stroke"
+									width={20}
+									height={20}
+									viewBox="0 0 20 20"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M15 5L5 15"
+										stroke="currentColor"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<path
+										d="M5 5L15 15"
+										stroke="currentColor"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div className="mt-4 mx-4 ">
+						<ul className="flex flex-col space-y-4">
+							<li className="border-b border-gray-200 dark:border-gray-700 dark:text-gray-700 pb-4 px-1 flex items-center justify-between">
+								<Link
+									to="/login"
+									className=" focus:outline-none focus:ring-2 focus:ring-gray-800 text-base text-gray-800 hover:underline"
+								>
+									Login
+								</Link>
+								<button
+									aria-label="Add"
+									className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded hover:bg-slate-50"
+								>
+									<svg
+										className="fill-stroke"
+										width={16}
+										height={16}
+										viewBox="0 0 16 16"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M8 3.3335V12.6668"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+										<path
+											d="M3.33203 8H12.6654"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+								</button>
+							</li>
+							<li className="border-b border-gray-200 dark:border-gray-700 dark:text-gray-700 pb-4 px-1 flex items-center justify-between">
+								<Link
+									to="/register"
+									className=" focus:outline-none focus:ring-2 focus:ring-gray-800 text-base text-gray-800 hover:underline"
+								>
+									Sign Up
+								</Link>
+								<button
+									aria-label="Add"
+									className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded hover:bg-slate-50"
+								>
+									<svg
+										className="fill-stroke"
+										width={16}
+										height={16}
+										viewBox="0 0 16 16"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M8 3.3335V12.6668"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+										<path
+											d="M3.33203 8H12.6654"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+								</button>
+							</li>
+							<li className="border-b border-gray-200 dark:border-gray-700 dark:text-gray-700 pb-4 px-1 flex items-center justify-between">
+								<Link
+									to="/shoppingCart"
+									className=" focus:outline-none focus:ring-2 focus:ring-gray-800 text-base text-gray-800 hover:underline"
+								>
+									Shopping Cart
+								</Link>
+								<button
+									aria-label="Add"
+									className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 rounded hover:bg-slate-50"
+								>
+									<svg
+										className="fill-stroke"
+										width={16}
+										height={16}
+										viewBox="0 0 16 16"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M8 3.3335V12.6668"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+										<path
+											d="M3.33203 8H12.6654"
+											stroke="currentColor"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+								</button>
 							</li>
 						</ul>
 					</div>
-				)}
+				</div>
 			</div>
-		</nav>
+		</div>
 	);
 };
 
