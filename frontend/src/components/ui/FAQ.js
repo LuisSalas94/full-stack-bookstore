@@ -36,7 +36,7 @@ const FAQ = () => {
 							</svg>
 							<span className="relative">Frequently</span>
 						</span>{" "}
-						asked questions
+						Asked Questions
 					</h2>
 				</div>
 			</div>
@@ -48,19 +48,21 @@ const FAQ = () => {
 								Where can I find used books online?
 							</p>
 							<p className="text-gray-700">
-								You can find used books online right here on the Book Oulet
+								You can find used books online right here on the{" "}
+								<span className="text-purple-700 mr-1">Book Oulet</span>
 								website. We offer multiple ways for you to find your next read,
 								including our search bar that allows you to search for books by
 								title or author, or you can browse by genre, price, and even
 								free shipping.
 								<br />
 								<br />
-								Book Oulet has books for sale that everyone can enjoy, no matter
-								their favorite genre. Whether you're looking for your next
-								favorite fantasy novel, out-of-print rarities, or shopping for
-								college textbooks online, we have everything you need to get
-								affordable new and used books. Search by title, author, or ISBN
-								to find exactly what you're looking for at an affordable price.
+								<span className="text-purple-700 mr-1">Book Oulet</span> has
+								books for sale that everyone can enjoy, no matter their favorite
+								genre. Whether you're looking for your next favorite fantasy
+								novel, out-of-print rarities, or shopping for college textbooks
+								online, we have everything you need to get affordable new and
+								used books. Search by title, author, or ISBN to find exactly
+								what you're looking for at an affordable price.
 							</p>
 						</div>
 						<div>
@@ -68,16 +70,16 @@ const FAQ = () => {
 								What are the top 5 most popular books?
 							</p>
 							<p className="text-gray-700">
-								Book Oulet gives you access to the most popular books of all
-								time, including:
+								<span className="text-purple-700 mr-1">Book Oulet</span> gives
+								you access to the most popular books of all time, including:
 								<br />
 								<br />
 								<ul>
-									<li>Harry Potter</li>
-									<li className="my-1">The Hunger Games</li>
-									<li>The Fault in Our Stars</li>
-									<li className="my-1">The Twilight Saga</li>
-									<li>The Book Thief</li>
+									<li> - Harry Potter</li>
+									<li className="my-1"> - The Hunger Games</li>
+									<li> - The Fault in Our Stars</li>
+									<li className="my-1"> - The Twilight Saga</li>
+									<li> - The Book Thief</li>
 								</ul>
 								<br />
 								However, you should never read a book just because it's popular.
@@ -106,13 +108,14 @@ const FAQ = () => {
 								Where can I sell books online?
 							</p>
 							<p className="text-gray-700">
-								You can sell your books online with Alibris using our buyback
-								program or by becoming a casual seller. With our buyback
-								program, you can search for your books online to find out if
-								we're currently buying them. If we're not, consider signing up
-								to become a casual seller, where you can sell any books to
-								people shopping on our website for as little or as much as you
-								want.
+								You can sell your books online with{" "}
+								<span className="text-purple-700 mr-1">Book Oulet</span> using
+								our buyback program or by becoming a casual seller. With our
+								buyback program, you can search for your books online to find
+								out if we're currently buying them. If we're not, consider
+								signing up to become a casual seller, where you can sell any
+								books to people shopping on our website for as little or as much
+								as you want.
 							</p>
 						</div>
 						<div>
