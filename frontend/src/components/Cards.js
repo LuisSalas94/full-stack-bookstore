@@ -19,26 +19,27 @@ const Cards = () => {
 					<a href="/" aria-label="Item" className="mr-3">
 						<div className="flex items-center justify-center w-16 h-16 rounded-full bg-indigo-50">
 							<svg
-								className="w-12 h-12 text-purple-400"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth="1.5"
 								stroke="currentColor"
-								viewBox="0 0 52 52"
+								className="w-8 h-8 text-purple-400"
 							>
-								<polygon
-									strokeWidth="3"
+								<path
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									fill="none"
-									points="29 13 14 29 25 29 23 39 38 23 27 23"
+									d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
 								/>
 							</svg>
 						</div>
 					</a>
 					<h2 className="font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl">
-						<span className="inline-block mb-2">Check our books</span>
+						<span className="inline-block mb-2">Check Out Our Books</span>
 						<div className="h-1 ml-auto duration-300 origin-left transform bg-deep-purple-accent-400 scale-x-30 group-hover:scale-x-100" />
 					</h2>
 				</div>
-				<p className="w-full text-gray-700 lg:text-sm lg:max-w-md">
+				<p className="w-full text-center text-gray-700 lg:text-sm lg:max-w-md">
 					“I find television very educating. Every time somebody turns on the
 					set, I go into the other room and read a book.” - Groucho Marx
 				</p>
@@ -59,10 +60,15 @@ const Cards = () => {
 							<p className="text-gray-700">
 								<span>by</span> {book.author}
 							</p>
-							<p className="text-gray-900 font-bold my-4">${book.price}</p>
+							<p className="text-gray-900 font-bold my-4">
+								<span className="text-rose-500 line-through">
+									${book.price + 2}
+								</span>{" "}
+								- ${book.price}
+							</p>
 							<Link
 								to={`/${book.isbn}`}
-								className="inline-flex items-center justify-center h-9 px-5 font-medium tracking-wide transition duration-200 rounded shadow-md  text-purple-400 border	border-purple-400	hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+								className="inline-flex items-center justify-center h-9 px-5 font-medium tracking-wide transition duration-200 rounded shadow-lg  text-purple-400 border	border-purple-400	hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
 							>
 								Details
 							</Link>
